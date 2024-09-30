@@ -1,7 +1,7 @@
 use std::path::PathBuf;
 use walkdir::WalkDir;
 
-pub fn get_files(dir: &str) -> Option<Vec<PathBuf>> {
+pub fn collect_files(dir: &str) -> Option<Vec<PathBuf>> {
     let mut entries = vec![];
     let walker = WalkDir::new(&dir).into_iter();
 
