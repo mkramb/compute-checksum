@@ -6,14 +6,14 @@
 
 Both processes for collecting files and generating hashes are executed in parallel.
 
-## Usage
+### Usage
 
 ```
 ./target/debug/compute_checksum --path ./target
 ./target/debug/compute_checksum --path ./target --exclude '*.e2e-spec.ts' --exclude '*.spec.ts'
 ```
 
-## Development
+### Development
 
 ```
 cargo run
@@ -21,7 +21,7 @@ cargo build
 cargo build --release
 ```
 
-## Testing
+### Testing
 
 Let’s compare it with the equivalent in Bash by cloning `git@github.com:rust-lang/rust.git` to use as input:
 
