@@ -1,8 +1,8 @@
-mod collect;
+mod files;
 mod hash;
 
 use clap::Parser;
-use collect::collect_files;
+use files::collect_files;
 use hash::hash_files;
 
 #[derive(Parser)]
@@ -19,7 +19,7 @@ pub struct Args {
 async fn main() {
     let args = Args::parse();
 
-    let files = collect_files(&args.path).unwrap();
+    let files = collect_files(&args.path);
     let hashes = hash_files(files).await;
 
     for result in hashes {
