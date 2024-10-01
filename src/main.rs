@@ -4,7 +4,6 @@ mod hash;
 use clap::Parser;
 use file::collect_files;
 use std::io::{BufReader, Cursor};
-
 use hash::{compute_hash, hash_files};
 
 #[derive(Parser)]
