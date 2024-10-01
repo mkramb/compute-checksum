@@ -7,4 +7,4 @@ edition = "2021"
 clap = { version = "4.5.18", features = ["derive"] }
 rayon = "1.10"
 jwalk = "0.5"
-sha1 = "0.6"
+sha1 = "0.10"
