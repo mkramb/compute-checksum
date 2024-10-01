@@ -23,7 +23,7 @@ cargo build --release
 
 ## Testing
 
-Let’s compare it with the equivalent in Bash by cloning git@github.com:rust-lang/rust.git to use as input:
+Let’s compare it with the equivalent in Bash by cloning `git@github.com:rust-lang/rust.git` to use as input:
 
 ```
 ./scripts/compute_checksum.sh ../rust/ (1m 9.18s)
