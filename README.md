@@ -8,9 +8,24 @@ Both processes for collecting files and generating hashes are executed in parall
 
 ### Usage
 
+Start with help:
+
 ```
-./target/debug/compute_checksum --path ./target
-./target/debug/compute_checksum --path ./target --exclude '*.e2e-spec.ts' --exclude '*.spec.ts'
+./compute_checksum --help
+Usage: compute_checksum [OPTIONS] --path <PATH>
+
+Options:
+  -p, --path <PATH>
+  -e, --exclude <EXCLUDE>
+  -h, --help               Print help
+  -V, --version            Print version
+```
+
+Example:
+
+```
+./compute_checksum --path ./target
+./compute_checksum --path ./target --exclude "*/build" --exclude "*/deps"
 ```
 
 ### Development
@@ -27,5 +42,5 @@ Let’s compare it with the equivalent in Bash by cloning `git@github.com:rust-l
 
 ```
 1m 9.18s >> ./compute_checksum.sh ../rust/
-   2.67s >> ./compute_checksum --path ../rust/ --exclude "node_modules/* (2.67s)
+   2.67s >> ./compute_checksum --path ../rust/ --exclude "*/node_modules" (2.67s)
 ```
