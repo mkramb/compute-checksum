@@ -4,9 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-sha1 = "0.6"
-walkdir = "2"
 clap = { version = "4.5.18", features = ["derive"] }
-tokio = { version = "1", features = ["full"] }
-futures = "0.3"
-num_cpus = "1.0"
+rayon = "1.10"
+jwalk = "0.5"
+sha1 = "0.6"

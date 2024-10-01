@@ -1,8 +1,8 @@
-mod files;
+mod file;
 mod hash;
 
 use clap::Parser;
-use files::collect_files;
+use file::collect_files;
 use hash::hash_files;
 
 #[derive(Parser)]
@@ -15,18 +15,14 @@ pub struct Args {
     exclude: Vec<String>,
 }
 
-#[tokio::main]
-async fn main() {
+fn main() {
     let args = Args::parse();
 
     let files = collect_files(&args.path);
-    let hashes = hash_files(files).await;
+    let hashes = hash_files(files);
 
     for result in hashes {
-        match result {
-            Ok(line) => println!("{}", line),
-            Err(_e) => return (),
-        }
+        println!("{}", result);
     }
 
     println!("Done");

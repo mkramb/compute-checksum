@@ -1,23 +1,20 @@
-extern crate num_cpus;
 
-use futures::stream::{self, StreamExt};
-use tokio::io::{self};
+use rayon::prelude::*;
 
-pub async fn compute_sha1sum(path: &str) -> io::Result<String> {
-    Ok(format!("{:?}", path))
+pub fn compute_sha1sum(path: &String) -> Option<String> {
+    Some(format!("{:?}", path))
 }
 
-pub async fn hash_files(files: Vec<String>) -> Vec<io::Result<String>> {
-    let hash_lines = stream::iter(files)
-        .map(|path| async move {
-            match compute_sha1sum(&path).await {
-                Ok(sha1sum) => Ok(sha1sum),
-                Err(e) => Err(e),
+pub fn hash_files(files: Vec<String>) -> Vec<String> {
+    let hash_lines = files
+        .par_iter()
+        .map(|path| {
+            match compute_sha1sum(path) {
+                Some(sha1sum) => sha1sum,
+                None => String::from(""),
             }
         })
-        .buffer_unordered(num_cpus::get())
-        .collect::<Vec<_>>()
-        .await;
+        .collect();
 
     hash_lines
 }

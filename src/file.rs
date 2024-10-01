@@ -1,4 +1,4 @@
-use walkdir::WalkDir;
+use jwalk::WalkDir;
 use std::ops::Not;
 
 pub fn collect_files(dir: &str) -> Vec<String> {
