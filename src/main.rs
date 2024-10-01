@@ -1,11 +1,11 @@
 mod file;
 mod hash;
 
-use std::io::{BufReader, Cursor};
-
 use clap::Parser;
 use file::collect_files;
-use hash::{hash_files,compute_hash};
+use std::io::{BufReader, Cursor};
+
+use hash::{compute_hash, hash_files};
 
 #[derive(Parser)]
 #[command(version, about, long_about = None)]
@@ -20,14 +20,11 @@ pub struct Args {
 fn main() {
     let args = Args::parse();
 
-    let files = collect_files(&args.path);
-    let hashes = hash_files(files).join("");
+    let file_hashes = hash_files(collect_files(&args.path, &args.exclude)).join("");
+    let final_hash = compute_hash(BufReader::new(Cursor::new(file_hashes.as_bytes())));
 
-    let cursor = Cursor::new(hashes.as_bytes());
-    let reader = BufReader::new(cursor);
-
-    match compute_hash(reader) {
+    match final_hash {
         Ok(hash) => println!("{}", hash),
-        Err(e) => eprintln!("Problem parsing file: {e}")
+        Err(e) => eprintln!("Problem parsing file: {e}"),
     }
 }

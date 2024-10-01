@@ -1,8 +1,7 @@
 use std::fs::File;
 use std::io::{BufReader, Read, Result};
-
-use rayon::prelude::*;
 use sha1::{Digest, Sha1};
+use rayon::prelude::*;
 
 pub fn compute_file_hash(path: &str) -> Result<String> {
     let file = File::open(path)?;
