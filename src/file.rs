@@ -4,7 +4,7 @@ use jwalk::WalkDir;
 pub fn collect_files(dir: &str, exclude: &Vec<String>) -> Vec<String> {
     let exclude_patterns: Vec<Pattern> = exclude
         .into_iter()
-        .filter_map(|p| Pattern::new(&p).ok()) // Convert the exclude strings into glob patterns
+        .filter_map(|p| Pattern::new(&p).ok())
         .collect();
 
     let entries = WalkDir::new(&dir)
