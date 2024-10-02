@@ -24,6 +24,6 @@ fn main() {
 
     match final_hash {
         Ok(hash) => println!("{}", hash),
-        Err(e) => eprintln!("Problem parsing file: {e}"),
+        Err(e) => eprintln!("Problem calculating hash: {e}"),
     }
 }
